@@ -22,21 +22,5 @@ public class BookDto {
 
     private String isbn;
 
-//    public static BookDto convert(Book from){
-//        BookIdDto idDto = null;
-//        if(from.getId() !=null){
-//            idDto = BookIdDto.convert(from.getId(), from.getBookYear(), from.getIsbn());
-//        }
-//
-//        return new BookDto(
-//                idDto,
-//                from.getTitle(),
-//                from.getAuthorName(),
-//                from.getPressName(),
-//                from.getBookYear(),
-//                from.getIsbn()
-//        );
-//    }
-
 
 }
