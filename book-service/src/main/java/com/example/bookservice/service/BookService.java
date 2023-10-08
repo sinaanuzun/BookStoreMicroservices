@@ -1,10 +1,13 @@
 package com.example.bookservice.service;
 
 import com.example.bookservice.dto.BookDto;
+import com.example.bookservice.dto.BookIdDto;
 import com.example.bookservice.exception.BookNotFoundException;
 import com.example.bookservice.model.Book;
 import com.example.bookservice.repository.BookRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -19,20 +22,24 @@ public class BookService {
     private final ModelMapper modelMapper;
 
 
-    List<BookDto> bookDtosDTOList(){
+    public List<BookDto> getAllBooks(){
             return bookRepository.findAll()
                     .stream()
-                    .map(source -> modelMapper.map(source, BookDto.class))
+                    .map(book -> modelMapper.map(book, BookDto.class))
                     .collect(Collectors.toList());
     }
 
-
-    public BookDto get(String id){
-        Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new BookNotFoundException("Kitap bulunamadı.." + id));
-        return modelMapper.map(book,BookDto.class);
+    public BookIdDto findByBookYear(int id){
+        Book book = bookRepository.getBookByBookYear(id)
+                .orElseThrow(() -> new BookNotFoundException("Id bulunamadı : " + id));
+        return modelMapper.map(book,BookIdDto.class);
     }
 
+    public BookDto findById(String id){
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new BookNotFoundException("Id bulunamadı : " + id));
+        return modelMapper.map(book,BookDto.class);
+    }
 
 
 }

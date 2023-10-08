@@ -15,12 +15,12 @@ public class BookIdDto {
 
     private String isbn;
 
-    public BookIdDto(String id, int bookYear) {
-        this.id = id;
-        this.bookYear = bookYear;
-    }
-
-    public static BookIdDto convert(String id, int bookYear, String isbn){
-        return new BookIdDto(id,bookYear,isbn);
-    }
+//    public BookIdDto(String id, int bookYear) {
+//        this.id = id;
+//        this.bookYear = bookYear;
+//    }
+//
+//    public static BookIdDto convert(String id, int bookYear, String isbn){
+//        return new BookIdDto(id,bookYear,isbn);
+//    }
 }
