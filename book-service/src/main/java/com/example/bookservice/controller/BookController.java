@@ -28,8 +28,8 @@ public class BookController {
     }
 
     @GetMapping("/bookyear/{bookyear}")
-    public ResponseEntity<BookIdDto> getBookYear(@PathVariable @NotEmpty int id){
-        return ResponseEntity.ok(bookService.findByBookYear(id));
+    public ResponseEntity<BookIdDto> getBookYear(@PathVariable @NotEmpty int bookyear){
+        return ResponseEntity.ok(bookService.findByBookYear(bookyear));
     }
 
     @GetMapping("/book/{id}")

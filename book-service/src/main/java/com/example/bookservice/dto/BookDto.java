@@ -1,6 +1,5 @@
 package com.example.bookservice.dto;
 
-import com.example.bookservice.model.Book;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +20,5 @@ public class BookDto {
     private int bookYear;
 
     private String isbn;
-
 
 }

@@ -1,14 +1,12 @@
 package com.example.bookservice.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.*;
 
 @Entity
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Table(name = "books")
 public class Book {
@@ -26,4 +24,5 @@ public class Book {
     private int bookYear;
 
     private String isbn;
+
 }
