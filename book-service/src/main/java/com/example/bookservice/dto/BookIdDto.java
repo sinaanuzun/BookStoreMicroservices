@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BookIdDto {
 
-    private String id;
+    private int id;
 
     private int bookYear;
 

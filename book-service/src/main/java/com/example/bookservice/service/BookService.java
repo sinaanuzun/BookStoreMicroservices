@@ -27,6 +27,7 @@ public class BookService {
                     .collect(Collectors.toList());
     }
 
+
     public BookIdDto findByBookYear(int id){
         Book book = bookRepository.getBookByBookYear(id)
                 .orElseThrow(() -> new BookNotFoundException("Id bulunamadı : " + id));
@@ -38,6 +39,11 @@ public class BookService {
                 .orElseThrow(() -> new BookNotFoundException("Id bulunamadı : " + id));
         return modelMapper.map(book,BookDto.class);
     }
+
+    public Book save(Book book){
+        return bookRepository.save(book);
+    }
+
 
 
 }

@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BookDto {
 
-    private BookIdDto id;
+
+    private int id;
 
     private String title;
 
@@ -19,6 +20,5 @@ public class BookDto {
 
     private int bookYear;
 
-    private String isbn;
 
 }
