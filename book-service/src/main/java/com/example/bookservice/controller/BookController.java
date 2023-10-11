@@ -25,8 +25,10 @@ public class BookController {
         return ResponseEntity.ok(bookService.getAllBooks());
     }
 
+
+
     @GetMapping("/bookyear/{bookyear}")
-    public ResponseEntity<BookIdDto> getBookYear(@PathVariable @NotEmpty int bookyear){
+    public ResponseEntity<List<BookIdDto>> getBooksByYear(@PathVariable @NotEmpty int bookyear) {
         return ResponseEntity.ok(bookService.findByBookYear(bookyear));
     }
 
@@ -39,6 +41,5 @@ public class BookController {
     public ResponseEntity<Book> save(@RequestBody Book book){
         return ResponseEntity.ok(bookService.save(book));
     }
-
 
 }

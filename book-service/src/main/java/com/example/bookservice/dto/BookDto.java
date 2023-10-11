@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BookDto {
 
-
     private int id;
 
     private String title;
@@ -19,6 +18,5 @@ public class BookDto {
     private String pressName;
 
     private int bookYear;
-
 
 }

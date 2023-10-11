@@ -28,22 +28,27 @@ public class BookService {
     }
 
 
-    public BookIdDto findByBookYear(int id){
-        Book book = bookRepository.getBookByBookYear(id)
-                .orElseThrow(() -> new BookNotFoundException("Id bulunamadı : " + id));
-        return modelMapper.map(book,BookIdDto.class);
+
+    public List<BookIdDto> findByBookYear(int year) {
+        List<Book> books = bookRepository.findByBookYear(year);
+        if (books.isEmpty()) {
+            throw new BookNotFoundException("Belirtilen yıla ait kitap bulunamadı : " + year);
+        }
+        return books.stream()
+                .map(book -> modelMapper.map(book, BookIdDto.class))
+                .collect(Collectors.toList());
     }
+
 
     public BookDto findById(String id){
         Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new BookNotFoundException("Id bulunamadı : " + id));
+                .orElseThrow(() -> new BookNotFoundException("Belirtilen ID ye ait kitap bulunamadı: " + id));
         return modelMapper.map(book,BookDto.class);
     }
 
     public Book save(Book book){
         return bookRepository.save(book);
     }
-
 
 
 }
