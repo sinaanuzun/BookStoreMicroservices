@@ -4,6 +4,7 @@ import com.example.bookservice.dto.BookDto;
 import com.example.bookservice.dto.BookIdDto;
 import com.example.bookservice.dto.request.CreateBookRequest;
 import com.example.bookservice.exception.BookNotFoundException;
+import com.example.bookservice.exception.BookNotSavedException;
 import com.example.bookservice.model.Book;
 import com.example.bookservice.repository.BookRepository;
 import lombok.AllArgsConstructor;
@@ -56,7 +57,7 @@ public class BookService {
 
             return modelMapper.map(book, BookDto.class);
         } catch (DataAccessException e){
-            throw new BookNotFoundException("Kitap kaydedilemedi : " + request);
+            throw new BookNotSavedException("Kitap kaydedilmedi : " + request);
         }
 
     }

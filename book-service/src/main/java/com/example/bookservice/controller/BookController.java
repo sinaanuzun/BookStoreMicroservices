@@ -6,7 +6,6 @@ import com.example.bookservice.dto.request.CreateBookRequest;
 import com.example.bookservice.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @AllArgsConstructor
-@Validated
 public class BookController {
 
     private final BookService bookService;
@@ -37,7 +35,7 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<BookDto> save(@Valid @RequestBody CreateBookRequest request){
+    public ResponseEntity<BookDto> save(@RequestBody @Valid CreateBookRequest request){
         return ResponseEntity.ok(bookService.saveBook(request));
     }
 
