@@ -2,11 +2,13 @@ package com.example.bookservice.service;
 
 import com.example.bookservice.dto.BookDto;
 import com.example.bookservice.dto.BookIdDto;
+import com.example.bookservice.dto.request.CreateBookRequest;
 import com.example.bookservice.exception.BookNotFoundException;
 import com.example.bookservice.model.Book;
 import com.example.bookservice.repository.BookRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,8 +48,17 @@ public class BookService {
         return modelMapper.map(book,BookDto.class);
     }
 
-    public Book save(Book book){
-        return bookRepository.save(book);
+
+    public BookDto saveBook(CreateBookRequest request){
+        try {
+            Book book = modelMapper.map(request,Book.class);
+            book = bookRepository.save(book);
+
+            return modelMapper.map(book, BookDto.class);
+        } catch (DataAccessException e){
+            throw new BookNotFoundException("Kitap kaydedilemedi : " + request);
+        }
+
     }
 
 

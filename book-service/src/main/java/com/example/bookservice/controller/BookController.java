@@ -2,18 +2,19 @@ package com.example.bookservice.controller;
 
 import com.example.bookservice.dto.BookDto;
 import com.example.bookservice.dto.BookIdDto;
-import com.example.bookservice.model.Book;
+import com.example.bookservice.dto.request.CreateBookRequest;
 import com.example.bookservice.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/api")
 @AllArgsConstructor
 @Validated
 public class BookController {
@@ -24,8 +25,6 @@ public class BookController {
     public ResponseEntity<List<BookDto>> getAllBook(){
         return ResponseEntity.ok(bookService.getAllBooks());
     }
-
-
 
     @GetMapping("/bookyear/{bookyear}")
     public ResponseEntity<List<BookIdDto>> getBooksByYear(@PathVariable @NotEmpty int bookyear) {
@@ -38,8 +37,8 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> save(@RequestBody Book book){
-        return ResponseEntity.ok(bookService.save(book));
+    public ResponseEntity<BookDto> save(@Valid @RequestBody CreateBookRequest request){
+        return ResponseEntity.ok(bookService.saveBook(request));
     }
 
 }
