@@ -3,8 +3,10 @@ package com.example.bookservice.controller;
 import com.example.bookservice.dto.BookDto;
 import com.example.bookservice.dto.BookIdDto;
 import com.example.bookservice.dto.request.CreateBookRequest;
+import com.example.bookservice.model.Book;
 import com.example.bookservice.service.BookService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,5 +40,12 @@ public class BookController {
     public ResponseEntity<BookDto> save(@RequestBody @Valid CreateBookRequest request){
         return ResponseEntity.ok(bookService.saveBook(request));
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable String id){
+        bookService.delete(id);
+        return new ResponseEntity<>(id + " numaralı kitap başarıyla silindi.", HttpStatus.OK);
+    }
+
 
 }

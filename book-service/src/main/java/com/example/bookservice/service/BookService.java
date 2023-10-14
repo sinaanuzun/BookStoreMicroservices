@@ -3,10 +3,12 @@ package com.example.bookservice.service;
 import com.example.bookservice.dto.BookDto;
 import com.example.bookservice.dto.BookIdDto;
 import com.example.bookservice.dto.request.CreateBookRequest;
-import com.example.bookservice.exception.BookNotFoundException;
-import com.example.bookservice.exception.BookNotSavedException;
+import com.example.bookservice.exception.book.BookNotFoundException;
+import com.example.bookservice.exception.book.BookNotSavedException;
+import com.example.bookservice.exception.book.IdNotFoundException;
 import com.example.bookservice.model.Book;
 import com.example.bookservice.repository.BookRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.dao.DataAccessException;
@@ -49,7 +51,7 @@ public class BookService {
         return modelMapper.map(book,BookDto.class);
     }
 
-
+    @Transactional()
     public BookDto saveBook(CreateBookRequest request){
         try {
             Book book = modelMapper.map(request,Book.class);
@@ -60,6 +62,14 @@ public class BookService {
             throw new BookNotSavedException("Kitap kaydedilmedi : " + request);
         }
 
+    }
+
+
+    @Transactional
+    public void delete(String id){
+         Book book = bookRepository.findById(id)
+                 .orElseThrow(() -> new IdNotFoundException("Belirtilen ID ye ait kitap bulunamadı: " + id));
+         bookRepository.delete(book);
     }
 
 
