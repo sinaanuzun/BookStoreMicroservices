@@ -17,12 +17,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BookNotFoundException.class)
-    public ResponseEntity<String> handleIdNotFoundException(BookNotFoundException ex) {
+    public ResponseEntity<String> handleBookNotFoundException(BookNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
     @ExceptionHandler(BookNotSavedException.class)
-    public ResponseEntity<String> handleIdNotFoundException(BookNotSavedException ex) {
+    public ResponseEntity<String> handleBookNotSavedException(BookNotSavedException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 }

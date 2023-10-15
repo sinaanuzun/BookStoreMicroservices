@@ -3,7 +3,6 @@ package com.example.bookservice.controller;
 import com.example.bookservice.dto.BookDto;
 import com.example.bookservice.dto.BookIdDto;
 import com.example.bookservice.dto.request.CreateBookRequest;
-import com.example.bookservice.model.Book;
 import com.example.bookservice.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -37,7 +36,7 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<BookDto> save(@RequestBody @Valid CreateBookRequest request){
+    public ResponseEntity<BookDto> save(@RequestBody CreateBookRequest request){
         return ResponseEntity.ok(bookService.saveBook(request));
     }
 
