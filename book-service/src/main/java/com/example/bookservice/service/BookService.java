@@ -53,6 +53,9 @@ public class BookService {
 
     @Transactional()
     public BookDto saveBook(CreateBookRequest request){
+
+        if (request.getTitle() == null)
+            throw new IdNotFoundException("Title alanı boş olamaz!..");
         try {
             Book book = modelMapper.map(request,Book.class);
             book = bookRepository.save(book);
